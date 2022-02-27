@@ -225,79 +225,8 @@ class xplrme_Join_Widget extends \Elementor\Widget_Base{
 		$settings = $this->get_settings_for_display();
 		$new_id   = rand(1245, 5489);
 
-		echo '<script>
-                jQuery(document).ready(function($) {
-                    $("#carousel-' . $new_id . '").slick({
-                        infinite: true,
-                        speed: 800,
-                        slidesToShow: 3,
-                        slidesToScroll: 1,
-                        mobileFirst: false,
-                        prevArrow:\'<span class="prev"><i class="fa fa-angle-left"></i></span>\',
-                        nextArrow: \'<span class="next"><i class="fa fa-angle-right"></i></span>\',
-                        responsive: [
-                            {
-                              breakpoint: 1200,
-                              settings: {
-                                slidesToShow: 3,
-                              }
-                            },
-                            {
-                              breakpoint: 992,
-                              settings: {
-                                slidesToShow: 2,
-                                arrows: false,
-                                autoplay: true,
-                                autoplaySpeed: 3000,
-                              }
-                            },
-                            {
-                              breakpoint: 768,
-                              settings: {
-                                slidesToShow: 2,
-                                arrows: false,
-                                autoplay: true,
-                                autoplaySpeed: 3000,
-                              }
-                            },
-                            {
-                              breakpoint: 576,
-                              settings: {
-                                slidesToShow: 1,
-                                arrows: false,
-                                autoplay: true,
-                                autoplaySpeed: 3000,
-                              }
-                            }
-                        ]
-                    });
-                 
-                    })
-                    
-                </script>';
 ?>
-		<div id="carousel-<?php echo $new_id; ?>" class="row team-active">
-			<?php
-			if ($settings['single_carousel']) {
 
-				foreach ( $settings['single_carousel'] as $item ) {   
-			?>
-
-
-			<div class="d-flex align-items-center">
-				  <div class="flex-shrink-0">
-				    <?php echo Group_Control_Image_Size::get_attachment_image_html( $item, 'home_thumb', 'carousel_img' ); ?>
-				  </div>
-				  <div class="flex-grow-1 ms-3">
-				    	<div class="team-content">
-							<h2 class="team-name"><?php echo esc_attr($item['title']); ?></h2>
-							<span><?php echo esc_attr($item['desc']); ?></span> 
-						</div>
-				  </div>
-			</div> 
-			<?php }
-			} ?>
-		</div>
 <?php
 
 	}

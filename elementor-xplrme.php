@@ -1,14 +1,14 @@
 <?php
 /*
-Plugin Name: Elementor Wpxray
+Plugin Name: Elementor Xplrme
 Plugin URI: 
-Description: Elementor Wpxray Plugin Support for Elementor Page Builder to develop a nice looking website.
+Description: Elementor Xplrme Plugin Support for Elementor Page Builder to develop a nice looking website.
 Author: Asad
 Author URI:  https://asaduzzaman.me/
 licenses:     GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Version: 1.0
-Text Domain: wpxray
+Text Domain: xplrme
 */
 
 
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 use Elementor\Plugin as plugin;
 
 /**
- * Main Elementor Wpxray Extension Class
+ * Main Elementor xplrme Extension Class
  *
  * The main class that initiates and runs the plugin.
  *
@@ -90,14 +90,10 @@ final class Elementor_Xplrme_Extension {
 	public function init() {
 	
 		$this->i18n();
-
 		// Add Plugin actions
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'init_widgets' ] );
 		add_action( 'elementor/controls/controls_registered', [ $this, 'init_controls' ] );
 		add_action ( 'elementor/elements/categories_registered', [ $this, 'register_new_category' ] );
-		//add_action ( 'elementor/frontend/after_register_scripts', [ $this, 'widget_scripts' ] );
-		//add_action ( 'elementor/frontend/after_enqueue_styles', [ $this, 'widget_styles' ] );
-
 
 	}
 
@@ -168,10 +164,10 @@ final class Elementor_Xplrme_Extension {
 		require_once(__DIR__ . '/widgets/join-widget.php');
 
 		// Register widget Class name
-		plugin::instance()->widgets_manager->register_widget_type( new \Xplrme_Elementor_Banner_Widget() );
-		plugin::instance()->widgets_manager->register_widget_type( new \Xplrme_Elementor_Tab() );
-		plugin::instance()->widgets_manager->register_widget_type( new \xplrme_Elementor_Review() );
-		plugin::instance()->widgets_manager->register_widget_type( new \xplrme_Join_Widget() );
+		plugin::instance()->widgets_manager->register( new \Xplrme_Elementor_Banner_Widget() );
+		plugin::instance()->widgets_manager->register( new \Xplrme_Elementor_Tab() );
+		plugin::instance()->widgets_manager->register( new \xplrme_Elementor_Review() );
+		plugin::instance()->widgets_manager->register( new \xplrme_Join_Widget() );
 
 	}
 

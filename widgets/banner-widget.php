@@ -16,11 +16,11 @@ use Elementor\Group_Control_Box_Shadow;
 class Xplrme_Elementor_Banner_Widget  extends \Elementor\Widget_Base {
 
 	public function get_name() {
-		return 'Box';
+		return 'Banner xplrme';
 	}
 
 	public function get_title() {
-		return __( 'Box', 'wpxray' );
+		return __( 'Banner', 'xplrme' );
 	}
 
 	public function get_icon() {
@@ -36,7 +36,7 @@ class Xplrme_Elementor_Banner_Widget  extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => __( 'Content', 'wpxray' ),
+				'label' => __( 'Content', 'xplrme' ),
 				'tab' => Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -44,22 +44,33 @@ class Xplrme_Elementor_Banner_Widget  extends \Elementor\Widget_Base {
 		$this->add_control(
 			'title',
 			[
-				'label' => __( 'Add Title', 'wpxray' ),
+				'label' => __( 'Add Title', 'xplrme' ),
 				'type' => Elementor\Controls_Manager::TEXT,
 				'input_type' => 'text',
 				'label_block'	=> true,
-				'placeholder' => __( 'This is demo title', 'wpxray' ),
+				'placeholder' => __( 'This is demo title', 'xplrme' ),
 			]
 		);
 
 		$this->add_control(
 			'subtext',
 			[
-				'label' => __( 'Sub Text', 'wpxray' ),
-				'type' => Elementor\Controls_Manager::TEXTAREA,
+				'label' => __( 'Sub Text', 'xplrme' ),
+				'type' => Elementor\Controls_Manager::WYSIWYG,
 				'input_type' => 'text',
 				'label_block'	=> true,
-				'placeholder' => __( 'This is Sub Text', 'wpxray' ),
+				'placeholder' => __( 'This is Sub Text', 'xplrme' ),
+			]
+		);
+
+		$this->add_control(
+			'button',
+			[
+				'label' => __( 'Button', 'xplrme' ),
+				'type' => Elementor\Controls_Manager::TEXT,
+				'input_type' => 'text',
+				'label_block'	=> true,
+				'placeholder' => __( 'Button text', 'xplrme' ),
 			]
 		);
 
@@ -77,7 +88,6 @@ class Xplrme_Elementor_Banner_Widget  extends \Elementor\Widget_Base {
 			]
 		);
 
-
 		$this->add_group_control(
 			Elementor\Group_Control_Image_Size::get_type(),
 			[
@@ -86,6 +96,7 @@ class Xplrme_Elementor_Banner_Widget  extends \Elementor\Widget_Base {
 			]
 		);
 		$this->end_controls_section();
+
 
 		$this->start_controls_section(
 			'title_section',
@@ -254,12 +265,26 @@ class Xplrme_Elementor_Banner_Widget  extends \Elementor\Widget_Base {
 		$subtext = $settings['subtext'];
 		//$image = $settings['image']['url'];
 
-		echo '<div claas="custom-item">';
-		echo '<h2 class="heading">' . $title . '</h2>';
-		echo '<p class="sub-heading">' . $subtext . '</p><div class="image">'; 
-		//echo '<img class="img-fluid" src="' . $image . '">';
-		echo \Elementor\Group_Control_Image_Size::get_attachment_image_html( $settings, 'imagesiz' ,'imagesr');
-		echo '</div></div>';
+//		echo '<div claas="custom-item">';
+//		echo '<h2 class="heading">' . $title . '</h2>';
+//		echo '<p class="sub-heading">' . $subtext . '</p><div class="image">';
+//		//echo '<img class="img-fluid" src="' . $image . '">';
+//		echo \Elementor\Group_Control_Image_Size::get_attachment_image_html( $settings, 'imagesiz' ,'imagesr');
+//		echo '</div></div>';
+
+		?>
+
+            <h1>Banner Title<br> Goes Here</h1>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+            <a href="#">Get Started</a>
+        </div>
+        <div class="for_mobile">
+            <img src="assets/img/banner-image.png" alt="">
+            <a href="#">Get Started</a>
+        </div>
+
+<?php
 
 	}
 	protected function _content_template() {}

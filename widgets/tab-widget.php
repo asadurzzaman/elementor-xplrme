@@ -160,18 +160,7 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::DIVIDER,
 			]
 		);
-		// $repeater->add_control(
-		// 	'is_button_full_with', [
-		// 		'label' => __( 'Button Full With?', 'wpxray' ),
-		// 		'type' => Elementor\Controls_Manager::SWITCHER,  
-		// 		'default' => false,
-		// 		'return_value' => 'yes',
-		// 		'style_transfer' => true,
-		// 		'selectors' => [
-		// 			'{{WRAPPER}} .single-price-tab button' => ' display: block; width:100%;', 
-		// 		],
-		// 	]
-		// );
+
 		$repeater->add_control(
 			'annual_button_text',
 			[
@@ -276,18 +265,7 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 				'type' => Elementor\Controls_Manager::ICONS,
 			]
 		);
-		// $repeater->add_control(
-		// 	'is_life_button_full_with', [
-		// 		'label' => __( 'Button Full With?', 'wpxray' ),
-		// 		'type' => Elementor\Controls_Manager::SWITCHER,  
-		// 		'default' => false,
-		// 		'return_value' => 'yes',
-		// 		'style_transfer' => true,
-		// 		'selectors' => [
-		// 			'{{WRAPPER}} .single-price-tab button' => ' display: block; width:100%;', 
-		// 		],
-		// 	]
-		// );	
+
 		$repeater->add_control(
 			'lifetime_button_text',
 			[
@@ -358,19 +336,7 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 				],
 			]
 		);
-		// $this->add_control(
-		// 	'price_box_padding',
-		// 	[
-		// 		'label' => __( 'Padding', 'plugin-domain' ),
-		// 		'type' => Controls_Manager::DIMENSIONS,
-		// 		'size_units' => [ 'px', '%', 'em' ],
-		// 		'selectors' => [
-		// 			'{{WRAPPER}} .details-price' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-		// 			'{{WRAPPER}} .features' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-		// 			'{{WRAPPER}} .bottom-section' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-		// 		],
-		// 	]
-		// );
+
 		$this->add_group_control(
 			\Elementor\Group_Control_Box_Shadow::get_type(),
 			[
@@ -1299,172 +1265,7 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 		$headerlifetime = $settings['header_lifetime'];
 
 ?>
-		<nav class="price-table-tab"> 
-			<div class="nav text-center justify-content-center" id="nav-tab" role="tablist">
-				<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab"><?php echo $headerannual; ?></button>
-				<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab"><?php echo $headerlifetime; ?></button>
-			</div>
-		</nav>
 
-		<div class="tab-content" id="nav-tabContent">
-			<style>
-				@media (min-width: 320px) and (max-width:767px){ 
-					div.price-tab div.table-width {
-						margin: 25px 0px !important;
-					}
-					.table-width {
-						width: inherit; 
-					}
-				 }
-				@media (min-width: 768px) and (max-width: 991px){ 
-					div.price-tab div.table-width {
-						margin: 25px 0px !important;
-					}
-					.table-width {
-						width: inherit; 
-					}					
-				 } 
-				.rec-price-tab div.lifetime-top-section:after,
-				.rec-price-tab div.annual-top-section:after {
-					position: absolute;
-					content: ""; 
-					width: 100%;
-					height: 100%;
-					top: 0;
-				}
-					/*New Pricing Table CSS*/
-					.features ul{
-						margin: 0px;
-						padding: 0px;
-						list-style: none;
-					}
-					.table-width {
-						width: 100%;
-						overflow:hidden;
-					}
-					.price-tab div.table-width { 
-						margin: 15px;
-					} 
-					.details-price {
-						position: relative;
-						z-index: 99;
-						width: 100%;
-					}
-					.offer-price,
-					.old-price { 
-						display: inline-block; 
-					}
-					.top-section {
-						position: relative;
-					}
-					nav.price-table-tab {
-						text-align: center;
-					}
-
-			</style>
-			<div class="tab-pane fade  show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-				<div class="price-tab  d-lg-flex d-xl-flex d-xxl-flex justify-content-center  annual">
-					<?php
-					if ($settings['annual_list']) {
-						foreach ($settings['annual_list'] as $annuallist) {
-
-							$annualfeature = $annuallist['is_annual_feature'] ? 'rec-price-tab' : ' ';
-					?>
-							<div class="table-width <?php echo esc_attr($annualfeature); ?>">
-								<div class="single-price-tab text-centersss">
-									<div class="offer starter"></div>
-									<div class="top-section annual-top-section"> 
-
-										<div class="details-price"> 
-											<?php if ($annuallist['annual_old_price']) { ?> 
-												<div class="old-price">  
-													<span class="old-currency-symbol">$</span><?php echo $annuallist['annual_old_price'] ?> 
-												</div>
-											<?php } ?>
-
-											<div class="offer-price">
-												<?php if ($annuallist['annual_offer_price']) { ?>
-													<span class="currency-symbol">$</span><?php echo $annuallist['annual_offer_price'] ?>
-												<?php } ?>
-												<?php if ($annuallist['annual_package_type']) { ?>
-													<span class="package-type"><?php echo $annuallist['annual_package_type'] ?></span>
-												<?php } ?>
-											</div>
-											<div class="package-name">
-												<h3><?php echo $annuallist['annual_package_name'] ?></h3>
-											</div>   
-										</div>
-
-									</div>
-
-
-									<div class="features">
-										<?php echo $annuallist['annual_feature_list'] ?>
-									</div>
-									<div class="bottom-section">
-										<button class="price-link text-center" type="button"><a href="<?php echo $annuallist['annual_button_url']['url'] ?>"><?php echo $annuallist['annual_button_text'] ?></a></button>
-									</div>
-								</div>
-							</div>
-					<?php }
-					} ?>
-				</div>
-			</div>
-
-			<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-				<div class="price-tab d-lg-flex d-xl-flex d-xxl-flex justify-content-center lifetime">
-
-					<?php
-					if ($settings['lifetime_list']) {
-						foreach ($settings['lifetime_list'] as $lifetimelist) {
-							$lifetimefeature = $lifetimelist['is_lifetime_feature'] ? 'rec-price-tab' : '';
-					?>
-							<div class="table-width <?php echo esc_attr($lifetimefeature); ?>">
-								<div class="single-price-tab text-centerss">
-									<div class="offer starter"></div>
-									<div class="top-section lifetime-top-section">   
-										<div class="details-price">  
-
-											<?php if ($lifetimelist['lifetime_old_price']) { ?>
-												<div class="old-price">  
-													<span class="old-currency-symbol">$</span><?php echo $lifetimelist['lifetime_old_price'] ?> 
-												</div>
-											<?php } ?>
-
-											<div class="offer-price">
-												<?php if ($lifetimelist['lifetime_offer_price']) { ?>
-													<span class="currency-symbol">$</span><?php echo $lifetimelist['lifetime_offer_price'] ?>
-												<?php } ?>
-												<?php if ($lifetimelist['lifetime_package_type']) { ?>
-													<span class="package-type"><?php echo $lifetimelist['lifetime_package_type'] ?></span>
-												<?php } ?>
-											</div>
-											<div class="package-name">
-												<h3><?php echo $lifetimelist['lifetime_package_name'] ?></h3>
-											</div>  
-										</div> 
-									</div> 
-									<div class="features">
-										<?php echo $lifetimelist['lifetime_feature_list'] ?>
-									</div> 
-									<?php if ($lifetimelist['lifetime_button_text']) { ?>		
-										<div class="bottom-section">
-											<button class="price-link" type="button">
-												<a href="<?php echo $lifetimelist['lifetime_button_url']['url'] ?>">
-												<?php echo $lifetimelist['lifetime_button_text'] ?></a>
-											</button>
-										</div>
-									<?php } ?>
-								</div>
-							</div>
-					<?php }
-					} ?>
-
-
-				</div>
-			</div>
-
-		</div>
 <?php }
 
 	//protected function _content_template() { }

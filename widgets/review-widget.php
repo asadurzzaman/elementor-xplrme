@@ -192,26 +192,7 @@ class xplrme_Elementor_Review  extends \Elementor\Widget_Base
         
         
         ?>
-        <div class="table-responsive-sm table-responsive-md table-responsive-lg">
-            <table class="table comparison-table">
-            <thead>
-                <tr>
-                    <th scope="col"><?php echo esc_html_e( $comparison_feature ) ?></th> 
-                    <th scope="col"><?php echo esc_html_e( $comparison_free ) ?></th>
-                    <th scope="col"><?php echo esc_html_e( $comparison_pro ) ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach( $all_features_list as $index => $feature ) : ?>
-                <tr>
-                    <th scope="row"><?php esc_html_e( $feature['text'] ) ?></th> 
-                    <td class="free"><?php \Elementor\Icons_Manager::render_icon( $feature['free_icon'], [ 'aria-hidden' => 'true' ] ); ?></td>
-                    <td  class="pro"><?php \Elementor\Icons_Manager::render_icon( $feature['peo_icon'], [ 'aria-hidden' => 'true' ] ); ?></td> 
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-            </table>
-        </div>
+
 <?php  
      }
 
