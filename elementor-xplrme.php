@@ -158,16 +158,16 @@ final class Elementor_Xplrme_Extension {
 	public function init_widgets() {
 
 		// Include Widget files
-		require_once(__DIR__ . '/widgets/banner-widget.php');
+		//require_once(__DIR__ . '/widgets/banner-widget.php');
 		require_once(__DIR__ . '/widgets/tab-widget.php');
-		require_once(__DIR__ . '/widgets/review-widget.php');
-		require_once(__DIR__ . '/widgets/join-widget.php');
+		//require_once(__DIR__ . '/widgets/review-widget.php');
+		//require_once(__DIR__ . '/widgets/join-widget.php');
 
 		// Register widget Class name
-		plugin::instance()->widgets_manager->register( new \Xplrme_Elementor_Banner_Widget() );
+		//plugin::instance()->widgets_manager->register( new \Xplrme_Elementor_Banner_Widget() );
 		plugin::instance()->widgets_manager->register( new \Xplrme_Elementor_Tab() );
-		plugin::instance()->widgets_manager->register( new \xplrme_Elementor_Review() );
-		plugin::instance()->widgets_manager->register( new \xplrme_Join_Widget() );
+		//plugin::instance()->widgets_manager->register( new \xplrme_Elementor_Review() );
+		//plugin::instance()->widgets_manager->register( new \xplrme_Join_Widget() );
 
 	}
 
