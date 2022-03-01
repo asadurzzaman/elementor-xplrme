@@ -118,6 +118,20 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 				'selector' => '{{WRAPPER}} button.nav-link',
 			]
 		);
+        $this->add_control(
+                'tabs_tab_color',
+			[
+                'label' => __( 'Title Color', 'xplrme' ),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'scheme' => [
+                    'type' => Elementor\Core\Schemes\Color::get_type(),
+                    'value' => Elementor\Core\Schemes\Color::COLOR_1,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} button.nav-link p' => 'color: {{VALUE}}',
+                ],
+            ]
+		);
 		$this->add_control(
 			'tabs_bg_color',
 			[
@@ -128,7 +142,7 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 					'value' => Elementor\Core\Schemes\Color::COLOR_1,
 				],
 				'selectors' => [
-					'{{WRAPPER}} div#nav-tab' => 'background: {{VALUE}}',
+					'{{WRAPPER}} .choose_tab ul li button.nav-link.active' => 'background: {{VALUE}}',
 				],
 			]
 		);
@@ -139,11 +153,10 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
-					'{{WRAPPER}} .table-width' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .choose_tab ul li button.nav-link' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
-
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -163,7 +176,7 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 					'value' => Elementor\Core\Schemes\Color::COLOR_1,
 				],
 				'selectors' => [
-					'{{WRAPPER}} div#nav-tab' => 'background: {{VALUE}}',
+					'{{WRAPPER}} .tab_desc' => 'background: {{VALUE}}',
 				],
 			]
 		);
@@ -181,7 +194,7 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 				'name' => 'tabs_t_content_typography',
 				'label' => __( 'Typography', 'xplrme' ),
 				'scheme' => Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
-				'selector' => '{{WRAPPER}} button.nav-link',
+				'selector' => '{{WRAPPER}} .tab-pane h2',
 			]
 		);
 		$this->add_control(
@@ -194,7 +207,7 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 					'value' => Elementor\Core\Schemes\Color::COLOR_1,
 				],
 				'selectors' => [
-					'{{WRAPPER}} button.nav-link' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .tab-pane h2' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -213,7 +226,7 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 				'name' => 'tabs_st_content_typography',
 				'label' => __( 'Typography', 'xplrme' ),
 				'scheme' => Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
-				'selector' => '{{WRAPPER}} button.nav-link',
+				'selector' => '{{WRAPPER}} .tab-pane h3',
 			]
 		);
 		$this->add_control(
@@ -226,7 +239,7 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 					'value' => Elementor\Core\Schemes\Color::COLOR_1,
 				],
 				'selectors' => [
-					'{{WRAPPER}} button.nav-link' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .tab-pane h3' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -245,7 +258,7 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 				'name' => 'tabs_p_content_typography',
 				'label' => __( 'Typography', 'xplrme' ),
 				'scheme' => Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
-				'selector' => '{{WRAPPER}} button.nav-link',
+				'selector' => '{{WRAPPER}} .tab-pane p',
 			]
 		);
 		$this->add_control(
@@ -258,7 +271,7 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 					'value' => Elementor\Core\Schemes\Color::COLOR_1,
 				],
 				'selectors' => [
-					'{{WRAPPER}} button.nav-link' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .tab-pane p' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -275,8 +288,6 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 
 		<section class="below_course_section">
 			<div class="tab_desc">
-
-
 				<div class="choose_tab full">
 					<ul class="nav">
 						<?php
@@ -285,8 +296,7 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 							$count = 0;
 						foreach ( $settings['tabs_list'] as $tab_list ){
 							$count++;
-							$category_slug =  trim(preg_replace('/^\s+|\s+$|\s+(?=\s)/', ' ', str_replace("/^\s+|\s+$|\s+(?=\s)/", " ", $tab_list['is_xplrme_single_tab_title'])));;
-
+                            $category_slug = str_replace(' ', '-', $tab_list['is_xplrme_single_tab_title']);
 							$category_link = strtolower( $category_slug );
 
 						?>
@@ -306,10 +316,11 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 						$i = 0;
 						foreach ( $settings['tabs_list'] as $tab_list ){
 							$i++;
-						$slig_id = $tab_list["_id"];
+                        $category_desc = str_replace(' ', '-', $tab_list['is_xplrme_single_tab_title']);
+                        $category_desc_link = strtolower( $category_desc );
 					?>
 					<div class="tab-pane fade show <?php echo ( $i == 1 ) ? 'active' : '';?>" id="<?php echo
-					$slig_id; ?>" >
+                    $category_desc_link; ?>" >
 						<?php echo $tab_list['is_xplrme_single_tab_desc']; ?>
 					</div>
 					<?php } } ;?>
@@ -319,9 +330,7 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 
 				<div class="choose_tab tab_mobile">
 					<ul class="nav">
-
 						<?php
-
 						if( $settings['tabs_list']) {
 							foreach ( $settings['tabs_list'] as $tab_list ){
 
