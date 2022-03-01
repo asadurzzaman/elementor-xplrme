@@ -301,9 +301,9 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 
 						?>
 						<li>
-							<button class="nav-link <?php echo ( $count == 1 ) ? 'active' : '';?>" data-bs-toggle="pill" data-bs-target="#<?php echo $category_link; ?>">
-								<i class="fas fa-gear    "></i>
-								<p><?php echo $tab_list['is_xplrme_single_tab_title']; ?></p>
+							<button class="nav-link <?php echo ( $count == 1 ) ? 'active' : '';?>" data-bs-toggle="pill" data-bs-target="#<?php echo sanitize_text_field($category_link); ?>">
+                                <i class="<?php echo $tab_list['xplrme_tab_icons']['value'] ?>    "></i>
+								<p><?php echo sanitize_text_field( $tab_list['is_xplrme_single_tab_title'] ); ?></p>
 							</button>
 						</li>
 						<?php } } ;?>
@@ -321,7 +321,7 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 					?>
 					<div class="tab-pane fade show <?php echo ( $i == 1 ) ? 'active' : '';?>" id="<?php echo
                     $category_desc_link; ?>" >
-						<?php echo $tab_list['is_xplrme_single_tab_desc']; ?>
+						<?php echo sanitize_text_field( $tab_list['is_xplrme_single_tab_desc'] ); ?>
 					</div>
 					<?php } } ;?>
 				</div>
@@ -338,7 +338,7 @@ class Xplrme_Elementor_Tab  extends \Elementor\Widget_Base
 								<li>
 									<button class="nav-link active" data-bs-toggle="pill" data-bs-target="#pills-home">
 										<i class="fas fa-gear    "></i>
-										<p><?php echo $tab_list['is_xplrme_single_tab_title']; ?></p>
+										<p><?php echo sanitize_text_field($tab_list['is_xplrme_single_tab_title']); ?></p>
 									</button>
 								</li>
 							<?php } } ?>
